@@ -1,6 +1,6 @@
 import React from "react";
-import { StyleSheet } from "react-native";
-import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
+import { Avatar, Button, Card, Paragraph } from "react-native-paper";
+import Title from "../../../utils/mainTheme";
 
 const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
 
