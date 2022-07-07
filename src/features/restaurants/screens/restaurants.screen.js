@@ -1,31 +1,71 @@
 import React from "react";
 import { Searchbar } from "react-native-paper";
-import { StatusBar, StyleSheet, SafeAreaView, Text, View } from "react-native";
-import styled from "styled-components/native";
-
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
+import { FlatList } from "react-native";
 
-const SafeArea = styled(SafeAreaView)`
-  flex: 1;
-  ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px`};
-`;
+import {
+  SafeArea,
+  SearchContainer,
+  RestaurantListContainer,
+} from "./restaurants.styles";
 
-const SearchContainer = styled.View`
-  padding: ${(props) => props.theme.space[3]};
-`;
+const DATA = [
+  {
+    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+    name: "Some Restaurant",
+    icon: "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
+    photos: [
+      "https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg",
+    ],
+    address: "100 some random street",
+    isOpenNow: false,
+    rating: 2,
+    isClosedTemporarily: true,
+  },
+  {
+    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28bz",
+    name: "Some Restaurant",
+    icon: "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
+    photos: [
+      "https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg",
+    ],
+    address: "100 some random street",
+    isOpenNow: true,
+    rating: 1,
+    isClosedTemporarily: true,
+  },
+  {
+    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28bx",
+    name: "Some Restaurant",
+    icon: "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
+    photos: [
+      "https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg",
+    ],
+    address: "100 some random street",
+    isOpenNow: true,
+    rating: 4,
+    isClosedTemporarily: false,
+  },
+];
 
-const RestaurantListContainer = styled.View`
-  flex: 1;
-  padding: ${(props) => props.theme.space[3]};
-`;
-
-export const RestaurantsScreen = () => (
-  <SafeArea>
-    <SearchContainer>
-      <Searchbar />
-    </SearchContainer>
-    <RestaurantListContainer>
-      <RestaurantInfoCard />
-    </RestaurantListContainer>
-  </SafeArea>
+const renderItem = ({ item }) => (
+  <RestaurantListContainer>
+    <RestaurantInfoCard restaurant={item} />
+  </RestaurantListContainer>
 );
+
+export const RestaurantsScreen = () => {
+  return (
+    <SafeArea>
+      <SearchContainer>
+        <Searchbar />
+      </SearchContainer>
+
+      <FlatList
+        data={DATA}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
+    </SafeArea>
+  );
+};
