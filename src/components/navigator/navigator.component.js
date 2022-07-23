@@ -6,6 +6,7 @@ import { Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { resturantsRequest } from "../../services/resturants/resturants.service";
 
 export default function Navigator() {
   return (
