@@ -1,6 +1,9 @@
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import React from "react";
 import Navigator from "./src/components/navigator/navigator.component";
+import { ThemeProvider } from "styled-components/native";
+import { theme } from "./src/infrastructure/theme";
+import { RestaurantsContextProvider } from "./src/services/resturants/resturants.context";
 import {
   useFonts as useExtra,
   Montserrat_200ExtraLight,
@@ -25,7 +28,11 @@ export default function App() {
   }
   return (
     <>
-      <Navigator />
+      <ThemeProvider theme={theme}>
+        <RestaurantsContextProvider>
+          <Navigator />
+        </RestaurantsContextProvider>
+      </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>
   );

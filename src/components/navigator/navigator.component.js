@@ -1,12 +1,10 @@
 import React from "react";
-import { ThemeProvider } from "styled-components/native";
-import { theme } from "../../infrastructure/theme";
+
 import { RestaurantsScreen as Resturants } from "../../features/restaurants/screens/restaurants.screen";
 import { Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { resturantsRequest } from "../../services/resturants/resturants.service";
 
 export default function Navigator() {
   return (
@@ -19,11 +17,7 @@ export default function Navigator() {
 }
 
 function ResturantsScreen() {
-  return (
-    <ThemeProvider theme={theme}>
-      <Resturants />
-    </ThemeProvider>
-  );
+  return <Resturants />;
 }
 
 function MapScreen() {

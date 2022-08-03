@@ -11,7 +11,7 @@ export const resturantsRequest = (location = "37.7749295,-122.4194155") => {
   });
 };
 
-const resturantsTransform = ({ results = [] }) => {
+export const resturantsTransform = ({ results = [] }) => {
   const mapedResults = results.map((resturant) => {
     return {
       ...resturant,
@@ -22,11 +22,11 @@ const resturantsTransform = ({ results = [] }) => {
   return camelize(mapedResults);
 };
 
-resturantsRequest()
-  .then(resturantsTransform)
-  .then((transformResults) => {
-    console.log(transformResults);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+// resturantsRequest()
+//   .then(resturantsTransform)
+//   .then((transformResults) => {
+//     console.log(transformResults);
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
