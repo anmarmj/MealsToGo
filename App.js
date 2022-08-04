@@ -4,6 +4,7 @@ import Navigator from "./src/components/navigator/navigator.component";
 import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme";
 import { RestaurantsContextProvider } from "./src/services/resturants/resturants.context";
+import { Loader } from "./src/components/loader/loader.component";
 import {
   useFonts as useExtra,
   Montserrat_200ExtraLight,
@@ -24,7 +25,7 @@ export default function App() {
   });
 
   if (!MontserratExtraLoaded || !MontserratRegukarLoaded) {
-    return null;
+    return <Loader />;
   }
   return (
     <>
