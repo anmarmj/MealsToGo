@@ -4,6 +4,7 @@ import Navigator from "./src/components/navigator/navigator.component";
 import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme";
 import { RestaurantsContextProvider } from "./src/services/resturants/resturants.context";
+import { LocationsContext } from "./src/services/locations/locations.context";
 import { Loader } from "./src/components/loader/loader.component";
 import {
   useFonts as useExtra,
@@ -30,9 +31,11 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <RestaurantsContextProvider>
-          <Navigator />
-        </RestaurantsContextProvider>
+        <LocationsContext>
+          <RestaurantsContextProvider>
+            <Navigator />
+          </RestaurantsContextProvider>
+        </LocationsContext>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>
