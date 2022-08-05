@@ -8,11 +8,12 @@ export const RestaurantsContextProvider = ({ children }) => {
   const [restaurants, setRestaurants] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [location, setLocation] = useState("37.7749295,-122.4194155");
 
   const retrieveRestaurants = () => {
     setIsLoading(true);
     setTimeout(() => {
-      resturantsRequest("37.7749295,-122.4194155")
+      resturantsRequest(location)
         .then(resturantsTransform)
         .then((results) => {
           setIsLoading(false);
@@ -26,7 +27,7 @@ export const RestaurantsContextProvider = ({ children }) => {
   };
   useEffect(() => {
     retrieveRestaurants();
-  }, []);
+  }, [location]);
 
   return (
     <RestaurantsContext.Provider
@@ -34,6 +35,7 @@ export const RestaurantsContextProvider = ({ children }) => {
         restaurants,
         isLoading,
         error,
+        setLocation,
       }}
     >
       {children}

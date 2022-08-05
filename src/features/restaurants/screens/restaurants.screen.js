@@ -3,11 +3,12 @@ import { Searchbar } from "react-native-paper";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 import { FlatList } from "react-native";
 import { RestaurantsContext } from "../../../services/resturants/resturants.context";
+import { LocationsContext } from "../../../services/locations/locations.context";
 import { Loader } from "../../../components/loader/loader.component";
 import {
   SafeArea,
   SearchContainer,
-  RestaurantListContainer,
+  RestaurantListContainer
 } from "./restaurants.styles";
 
 const renderItem = ({ item }) => (
@@ -17,12 +18,17 @@ const renderItem = ({ item }) => (
 );
 
 export const RestaurantsScreen = () => {
-  const { isLoading, error, restaurants } = useContext(RestaurantsContext);
-  console.log(error);
+  const { isLoading, error, restaurants, setLocation } =
+    useContext(RestaurantsContext);
+  const { location, search } = useContext(LocationsContext);
+
+  location && setLocation(`locations ${location.lat},${location.lng}`);
+
+  // setLocation(`locations ${location.lat},${location.lng}`);
   return (
     <SafeArea>
       <SearchContainer>
-        <Searchbar />
+        <Searchbar onChangeText={search} />
       </SearchContainer>
       {isLoading ? (
         <Loader />

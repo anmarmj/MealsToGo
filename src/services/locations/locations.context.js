@@ -1,8 +1,8 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, useEffect } from "react";
 
 import { locationRequest, locationTransform } from "./locations.service";
 
-export const LocationsContext = createContext();
+export const LocationsContext = React.createContext();
 
 export const LocationsContextProvider = ({ children }) => {
   const [keyword, setKeyword] = useState("san francisco");
@@ -28,8 +28,8 @@ export const LocationsContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    onSearch(keyword);
-  }, [keyword]);
+    onSearch();
+  }, []);
 
   return (
     <LocationsContext.Provider
