@@ -1,7 +1,7 @@
 import { mocks, mockImages } from "./mock";
 import camelize from "camelize";
 
-export const resturantsRequest = (location = "51.219448,4.402464") => {
+export const resturantsRequest = (location) => {
   return new Promise((resolve, reject) => {
     const mock = mocks[location];
     if (!mock) {
@@ -20,6 +20,7 @@ export const resturantsTransform = ({ results = [] }) => {
       ...resturant,
       isOpenNow: resturant.opening_hours && resturant.opening_hours.open_now,
       isClosedTemporarily: resturant.business_status === "CLOSED_TEMPORARILY",
+      address: resturant.vicinity,
     };
   });
   return camelize(mapedResults);

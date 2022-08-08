@@ -1,15 +1,10 @@
 import React, { useContext } from "react";
-import { Searchbar } from "react-native-paper";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 import { FlatList } from "react-native";
 import { RestaurantsContext } from "../../../services/resturants/resturants.context";
-import { LocationsContext } from "../../../services/locations/locations.context";
 import { Loader } from "../../../components/loader/loader.component";
-import {
-  SafeArea,
-  SearchContainer,
-  RestaurantListContainer
-} from "./restaurants.styles";
+import { SafeArea, RestaurantListContainer } from "./restaurants.styles";
+import Search from "../components/search.compnent";
 
 const renderItem = ({ item }) => (
   <RestaurantListContainer>
@@ -18,25 +13,18 @@ const renderItem = ({ item }) => (
 );
 
 export const RestaurantsScreen = () => {
-  const { isLoading, error, restaurants, setLocation } =
-    useContext(RestaurantsContext);
-  const { location, search } = useContext(LocationsContext);
+  const { isLoading, error, restaurants } = useContext(RestaurantsContext);
 
-  location && setLocation(`locations ${location.lat},${location.lng}`);
-
-  // setLocation(`locations ${location.lat},${location.lng}`);
   return (
     <SafeArea>
-      <SearchContainer>
-        <Searchbar onChangeText={search} />
-      </SearchContainer>
+      <Search />
       {isLoading ? (
         <Loader />
       ) : (
         <FlatList
           data={restaurants}
           renderItem={renderItem}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.placeId}
         />
       )}
     </SafeArea>
