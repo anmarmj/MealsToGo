@@ -17,6 +17,7 @@ const Search = () => {
         }}
         onChangeText={(text) => {
           setSearchKeyword(text);
+          search(text);
         }}
       />
     </SearchContainer>

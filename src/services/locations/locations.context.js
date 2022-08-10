@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { LanguageContext } from "../../infrastructure/language/language.context";
 
 import { locationRequest, locationTransform } from "./locations.service";
 
@@ -9,6 +10,7 @@ export const LocationsContextProvider = ({ children }) => {
   const [location, setLocation] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [locationError, setError] = useState(null);
+  const { language } = useContext(LanguageContext);
 
   const onSearch = (searchKeyword) => {
     setIsLoading(true);
@@ -30,9 +32,9 @@ export const LocationsContextProvider = ({ children }) => {
       .catch((err) => {
         console.log("eror:", err);
         setIsLoading(false);
-        setError(err);
+        setError(language.erorr.locationNotFound);
       });
-  }, [keyword]);
+  }, [keyword, language.erorr.locationNotFound]);
 
   return (
     <LocationsContext.Provider

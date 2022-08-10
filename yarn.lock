@@ -1110,6 +1110,11 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@expo-google-fonts/cairo@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/cairo/-/cairo-0.2.2.tgz#cab77dc480a15c351d6904c4be4c2af2cfbf9650"
+  integrity sha512-WDCS/FGN3+JT0vSfMk0qBqH9sZ54LXHOrIRCAW+eyOrJPEDxFmiB9VKFwvhnssVelFc9e+tWuanK7jmrC3KsCA==
+
 "@expo-google-fonts/inter@^0.2.2":
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/@expo-google-fonts/inter/-/inter-0.2.2.tgz#bd5624be6c92e7621aa9ddb5bd72757604729121"

@@ -1,11 +1,19 @@
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import React from "react";
 import Navigator from "./src/components/navigator/navigator.component";
-import { ThemeProvider } from "styled-components/native";
-import { theme } from "./src/infrastructure/theme";
+
 import { RestaurantsContextProvider } from "./src/services/resturants/resturants.context";
 import { LocationsContextProvider } from "./src/services/locations/locations.context";
+import { LanguageContextProvider } from "./src/infrastructure/language/language.context";
+
 import { Loader } from "./src/components/loader/loader.component";
+import {
+  useFonts as useCairo,
+  Cairo_900Black,
+  Cairo_300Light,
+  Cairo_400Regular,
+} from "@expo-google-fonts/cairo";
+
 import {
   useFonts as useExtra,
   Montserrat_200ExtraLight,
@@ -17,6 +25,12 @@ import {
 } from "@expo-google-fonts/montserrat";
 
 export default function App() {
+  let [fontsLoaded] = useCairo({
+    Cairo_900Black,
+    Cairo_300Light,
+    Cairo_400Regular,
+  });
+
   const [MontserratExtraLoaded] = useExtra({
     Montserrat_200ExtraLight,
   });
@@ -25,18 +39,19 @@ export default function App() {
     Montserrat_500Medium,
   });
 
-  if (!MontserratExtraLoaded || !MontserratRegukarLoaded) {
+  if (!MontserratExtraLoaded || !MontserratRegukarLoaded || !fontsLoaded) {
     return <Loader />;
   }
+
   return (
     <>
-      <ThemeProvider theme={theme}>
+      <LanguageContextProvider>
         <LocationsContextProvider>
           <RestaurantsContextProvider>
             <Navigator />
           </RestaurantsContextProvider>
         </LocationsContextProvider>
-      </ThemeProvider>
+      </LanguageContextProvider>
       <ExpoStatusBar style="auto" />
     </>
   );

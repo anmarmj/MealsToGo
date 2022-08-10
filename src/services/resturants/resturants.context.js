@@ -5,6 +5,7 @@ import React, {
   useContext,
   useEffect,
 } from "react";
+import { LanguageContext } from "../../infrastructure/language/language.context";
 import { LocationsContext } from "../locations/locations.context";
 
 import { resturantsRequest, resturantsTransform } from "./resturants.service";
@@ -17,6 +18,7 @@ export const RestaurantsContextProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   const { location, locationError } = useContext(LocationsContext);
+  const { language } = useContext(LanguageContext);
 
   const retrieveRestaurants = (loc) => {
     setIsLoading(true);
@@ -28,9 +30,9 @@ export const RestaurantsContextProvider = ({ children }) => {
           setIsLoading(false);
           setRestaurants(results);
         })
-        .catch((err) => {
+        .catch((_) => {
           setIsLoading(false);
-          setError(err);
+          setError(language.erorr.resturantNotFound);
         });
     }, 2000);
   };

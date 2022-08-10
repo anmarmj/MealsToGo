@@ -7,7 +7,9 @@ const ErrorComp = ({ children }) => {
   return (
     <ErrorContainer>
       <IconPNG source={require("../../../assets/error.png")} />
-      <Text variant="error">{children}</Text>
+      <Spacer position="top" size="large">
+        <Text variant="message">{children}</Text>
+      </Spacer>
     </ErrorContainer>
   );
 };

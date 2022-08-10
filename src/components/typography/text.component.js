@@ -19,6 +19,7 @@ const hint = (theme) => `
 
 const error = (theme) => `
     color: ${theme.colors.text.error};
+
 `;
 
 const caption = (theme) => `
@@ -32,12 +33,21 @@ const label = (theme) => `
     font-weight: ${theme.fontWeights.medium};
 `;
 
+const message = (theme) => `
+    color: ${theme.colors.text.error};
+    font-family: ${theme.fonts.heading};
+    font-size: ${theme.fontSizes.body};
+    font-weight: ${theme.fontWeights.medium};
+
+`;
+
 const variants = {
   body,
   label,
   caption,
   error,
   hint,
+  message,
 };
 
 export const Text = styled.Text`

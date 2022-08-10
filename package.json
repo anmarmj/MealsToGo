@@ -11,6 +11,7 @@
     "lint": "eslint . --ext .js"
   },
   "dependencies": {
+    "@expo-google-fonts/cairo": "^0.2.2",
     "@expo-google-fonts/inter": "^0.2.2",
     "@expo-google-fonts/montserrat": "^0.2.2",
     "@react-navigation/bottom-tabs": "^6.3.2",
