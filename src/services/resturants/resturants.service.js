@@ -5,7 +5,7 @@ export const resturantsRequest = (location) => {
   return new Promise((resolve, reject) => {
     const mock = mocks[location];
     if (!mock) {
-      reject("Location not founded");
+      reject("No resturant in this location");
     }
     resolve(mock);
   });

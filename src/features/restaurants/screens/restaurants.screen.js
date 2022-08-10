@@ -5,6 +5,7 @@ import { RestaurantsContext } from "../../../services/resturants/resturants.cont
 import { Loader } from "../../../components/loader/loader.component";
 import { SafeArea, RestaurantListContainer } from "./restaurants.styles";
 import Search from "../components/search.compnent";
+import ErrorComp from "../../../components/error/error.component";
 
 const renderItem = ({ item }) => (
   <RestaurantListContainer>
@@ -20,6 +21,8 @@ export const RestaurantsScreen = () => {
       <Search />
       {isLoading ? (
         <Loader />
+      ) : error !== null ? (
+        <ErrorComp>{error}</ErrorComp>
       ) : (
         <FlatList
           data={restaurants}

@@ -8,7 +8,7 @@ export const LocationsContextProvider = ({ children }) => {
   const [keyword, setKeyword] = useState("San Francisco");
   const [location, setLocation] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [locationError, setError] = useState(null);
 
   const onSearch = (searchKeyword) => {
     setIsLoading(true);
@@ -25,8 +25,10 @@ export const LocationsContextProvider = ({ children }) => {
       .then((result) => {
         setIsLoading(false);
         setLocation(result);
+        setError(null);
       })
       .catch((err) => {
+        console.log("eror:", err);
         setIsLoading(false);
         setError(err);
       });
@@ -36,7 +38,7 @@ export const LocationsContextProvider = ({ children }) => {
     <LocationsContext.Provider
       value={{
         isLoading,
-        error,
+        locationError,
         location,
         search: onSearch,
         keyword,
