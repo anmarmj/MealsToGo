@@ -1,6 +1,6 @@
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import React from "react";
-import Navigator from "./src/components/navigator/navigator.component";
+import { Navigation } from "./src/infrastructure/navigation";
 
 import { RestaurantsContextProvider } from "./src/services/resturants/resturants.context";
 import { LocationsContextProvider } from "./src/services/locations/locations.context";
@@ -48,7 +48,7 @@ export default function App() {
       <LanguageContextProvider>
         <LocationsContextProvider>
           <RestaurantsContextProvider>
-            <Navigator />
+            <Navigation />
           </RestaurantsContextProvider>
         </LocationsContextProvider>
       </LanguageContextProvider>

@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  createContext,
-  useMemo,
-  useContext,
-  useEffect,
-} from "react";
+import React, { useState, createContext, useContext, useEffect } from "react";
 import { LanguageContext } from "../../infrastructure/language/language.context";
 import { LocationsContext } from "../locations/locations.context";
 
@@ -43,12 +37,13 @@ export const RestaurantsContextProvider = ({ children }) => {
       return;
     }
     if (location) {
-      console.log("=======================");
-      console.log(location);
+      // console.log("=======================");
+      // console.log(location);
       const locString = `${location.lat},${location.lng}`;
       retrieveRestaurants(locString);
       setError(null);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location, locationError]);
 
   return (

@@ -15,6 +15,7 @@ export const LocationsContextProvider = ({ children }) => {
   const onSearch = (searchKeyword) => {
     setIsLoading(true);
     setKeyword(searchKeyword);
+    console.log(searchKeyword);
   };
 
   useEffect(() => {
@@ -29,8 +30,7 @@ export const LocationsContextProvider = ({ children }) => {
         setLocation(result);
         setError(null);
       })
-      .catch((err) => {
-        console.log("eror:", err);
+      .catch((_) => {
         setIsLoading(false);
         setError(language.erorr.locationNotFound);
       });

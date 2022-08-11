@@ -1,14 +1,14 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, { useContext } from "react";
-import { RestaurantsScreen as Resturants } from "../../features/restaurants/screens/restaurants.screen";
 import { Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { LanguageContext } from "../../infrastructure/language/language.context";
+import { LanguageContext } from "../language/language.context";
 import { ThemeContext } from "styled-components/native";
-import { Cairo_600SemiBold } from "@expo-google-fonts/cairo";
+import { RestaurantsNavigator } from "./resturants.navigator";
 
-export default function Navigator() {
+export default function AppNavigator() {
   return (
     <>
       <NavigationContainer>
@@ -16,10 +16,6 @@ export default function Navigator() {
       </NavigationContainer>
     </>
   );
-}
-
-function ResturantsScreen() {
-  return <Resturants />;
 }
 
 function MapScreen() {
@@ -71,7 +67,7 @@ function MyTabs() {
     <Tab.Navigator screenOptions={creatScreenOptions}>
       <Tab.Screen
         name="Resturants"
-        component={ResturantsScreen}
+        component={RestaurantsNavigator}
         options={{ title: language.navigations.resturants }}
       />
       <Tab.Screen
