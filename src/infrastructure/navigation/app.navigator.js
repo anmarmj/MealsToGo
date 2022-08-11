@@ -34,34 +34,32 @@ function SettingsScreen() {
   );
 }
 
-const TAB_ICONS = {
-  Resturants: "restaurant",
-  Map: "map",
-  Settings: "settings-sharp",
-};
-
-const creatScreenOptions = ({ route }) => {
-  const iconName = TAB_ICONS[route.name];
-  //console.log("font:", props.theme.fonts.heading);
-  return {
-    tabBarIcon: ({ color }) => (
-      <Ionicons name={iconName} size={32} color={color} />
-    ),
-    tabBarActiveTintColor: "tomato",
-    tabBarInactiveTintColor: "gray",
-    tabBarLabelStyle: {
-      fontSize: 10,
-      fontFamily: themeContext.fonts.heading,
-    },
-  };
-};
-
-const Tab = createBottomTabNavigator();
-let themeContext;
-
 function MyTabs() {
   const { language } = useContext(LanguageContext);
-  themeContext = useContext(ThemeContext);
+  const themeContext = useContext(ThemeContext);
+  const Tab = createBottomTabNavigator();
+
+  const TAB_ICONS = {
+    Resturants: "restaurant",
+    Map: "map",
+    Settings: "settings-sharp",
+  };
+
+  const creatScreenOptions = ({ route }) => {
+    const iconName = TAB_ICONS[route.name];
+    //console.log("font:", props.theme.fonts.heading);
+    return {
+      tabBarIcon: ({ color }) => (
+        <Ionicons name={iconName} size={32} color={color} />
+      ),
+      tabBarActiveTintColor: "tomato",
+      tabBarInactiveTintColor: "gray",
+      tabBarLabelStyle: {
+        fontSize: 10,
+        fontFamily: themeContext.fonts.heading,
+      },
+    };
+  };
 
   return (
     <Tab.Navigator screenOptions={creatScreenOptions}>
