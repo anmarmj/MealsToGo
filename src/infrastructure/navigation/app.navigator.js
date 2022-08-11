@@ -7,6 +7,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { LanguageContext } from "../language/language.context";
 import { ThemeContext } from "styled-components/native";
 import { RestaurantsNavigator } from "./resturants.navigator";
+import { MapScreen } from "../../features/map/screens/map.screen";
 
 export default function AppNavigator() {
   return (
@@ -15,14 +16,6 @@ export default function AppNavigator() {
         <MyTabs />
       </NavigationContainer>
     </>
-  );
-}
-
-function MapScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Map!</Text>
-    </View>
   );
 }
 

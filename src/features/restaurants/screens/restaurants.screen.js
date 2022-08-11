@@ -4,7 +4,7 @@ import { FlatList, Pressable, TouchableOpacity } from "react-native";
 import { RestaurantsContext } from "../../../services/resturants/resturants.context";
 import { Loader } from "../../../components/loader/loader.component";
 import { SafeArea, RestaurantListContainer } from "./restaurants.styles";
-import Search from "../components/search.compnent";
+import Search from "../components/search.component";
 import ErrorComp from "../../../components/error/error.component";
 
 export const RestaurantsScreen = ({ navigation }) => {
