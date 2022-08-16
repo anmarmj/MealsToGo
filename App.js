@@ -7,6 +7,9 @@ import { LocationsContextProvider } from "./src/services/locations/locations.con
 import { LanguageContextProvider } from "./src/infrastructure/language/language.context";
 import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
 
+import * as firebase from "firebase";
+import { firebaseConfig } from "./src/services/firebase/firebase.config";
+
 import { Loader } from "./src/components/loader/loader.component";
 import {
   useFonts as useCairo,
@@ -24,6 +27,8 @@ import {
   useFonts as useRegular,
   Montserrat_500Medium,
 } from "@expo-google-fonts/montserrat";
+
+firebase.initializeApp(firebaseConfig);
 
 export default function App() {
   let [fontsLoaded] = useCairo({
