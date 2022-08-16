@@ -5,6 +5,7 @@ import { Navigation } from "./src/infrastructure/navigation";
 import { RestaurantsContextProvider } from "./src/services/resturants/resturants.context";
 import { LocationsContextProvider } from "./src/services/locations/locations.context";
 import { LanguageContextProvider } from "./src/infrastructure/language/language.context";
+import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
 
 import { Loader } from "./src/components/loader/loader.component";
 import {
@@ -46,11 +47,13 @@ export default function App() {
   return (
     <>
       <LanguageContextProvider>
-        <LocationsContextProvider>
-          <RestaurantsContextProvider>
-            <Navigation />
-          </RestaurantsContextProvider>
-        </LocationsContextProvider>
+        <FavouritesContextProvider>
+          <LocationsContextProvider>
+            <RestaurantsContextProvider>
+              <Navigation />
+            </RestaurantsContextProvider>
+          </LocationsContextProvider>
+        </FavouritesContextProvider>
       </LanguageContextProvider>
       <ExpoStatusBar style="auto" />
     </>

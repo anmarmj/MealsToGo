@@ -4,7 +4,7 @@ import { LanguageContext } from "../../../infrastructure/language/language.conte
 import { LocationsContext } from "../../../services/locations/locations.context";
 import { SearchContainer } from "../screens/restaurants.styles";
 
-const Search = () => {
+const Search = ({ isFavouritesToggled, onFavouritesToggle }) => {
   const { keyword, search } = useContext(LocationsContext);
   const [searchKeyword, setSearchKeyword] = useState(keyword);
   const { language } = useContext(LanguageContext);
@@ -15,6 +15,8 @@ const Search = () => {
   return (
     <SearchContainer>
       <Searchbar
+        icon={isFavouritesToggled ? "heart" : "heart-outline"}
+        onIconPress={onFavouritesToggle}
         placeholder={language.search.placeHolder}
         value={searchKeyword}
         onSubmitEditing={() => {
