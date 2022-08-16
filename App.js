@@ -6,12 +6,7 @@ import { RestaurantsContextProvider } from "./src/services/resturants/resturants
 import { LocationsContextProvider } from "./src/services/locations/locations.context";
 import { LanguageContextProvider } from "./src/infrastructure/language/language.context";
 import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
-
-// import * as firebase from "firebase";
-import { initializeApp, getApps, getApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { firebaseConfig } from "./src/services/firebase/firebase.config";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 
 import { Loader } from "./src/components/loader/loader.component";
 import {
@@ -31,25 +26,8 @@ import {
   Montserrat_500Medium,
 } from "@expo-google-fonts/montserrat";
 
-// Initialize Firebase
-const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
-const auth = getAuth(app);
-
 //const analytics = getAnalytics(app);
 export default function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  useEffect(() => {
-    setTimeout(() => {
-      signInWithEmailAndPassword(auth, "anmar@mail.com", "Anmar123")
-        .then((user) => {
-          setIsAuthenticated(true);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    }, 2000);
-  }, []);
-
   let [fontsLoaded] = useCairo({
     Cairo_900Black,
     Cairo_300Light,
@@ -68,20 +46,18 @@ export default function App() {
     return <Loader />;
   }
 
-  if (!isAuthenticated) {
-    return null;
-  }
-
   return (
     <>
       <LanguageContextProvider>
-        <FavouritesContextProvider>
-          <LocationsContextProvider>
-            <RestaurantsContextProvider>
-              <Navigation />
-            </RestaurantsContextProvider>
-          </LocationsContextProvider>
-        </FavouritesContextProvider>
+        <AuthenticationContextProvider>
+          <FavouritesContextProvider>
+            <LocationsContextProvider>
+              <RestaurantsContextProvider>
+                <Navigation />
+              </RestaurantsContextProvider>
+            </LocationsContextProvider>
+          </FavouritesContextProvider>
+        </AuthenticationContextProvider>
       </LanguageContextProvider>
       <ExpoStatusBar style="auto" />
     </>
