@@ -1,7 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useContext } from "react";
 import { Text, View } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { LanguageContext } from "../language/language.context";
@@ -12,9 +11,7 @@ import { MapScreen } from "../../features/map/screens/map.screen";
 export default function AppNavigator() {
   return (
     <>
-      <NavigationContainer>
-        <MyTabs />
-      </NavigationContainer>
+      <MyTabs />
     </>
   );
 }
