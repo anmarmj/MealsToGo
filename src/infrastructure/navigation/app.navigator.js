@@ -1,10 +1,16 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useContext } from "react";
-import { Text, View } from "react-native";
+import { Text, View, Button } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "@expo/vector-icons/Ionicons";
+
 import { LanguageContext } from "../language/language.context";
 import { ThemeContext } from "styled-components/native";
+import { AuthenticationContext } from "../../services/authentication/authentication.context";
+import { RestaurantsContextProvider } from "../../services/resturants/resturants.context";
+import { LocationsContextProvider } from "../../services/locations/locations.context";
+import { FavouritesContextProvider } from "../../services/favourites/favourites.context";
+
 import { RestaurantsNavigator } from "./resturants.navigator";
 import { MapScreen } from "../../features/map/screens/map.screen";
 
@@ -17,9 +23,11 @@ export default function AppNavigator() {
 }
 
 function SettingsScreen() {
+  const { onLogout } = useContext(AuthenticationContext);
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Settings!</Text>
+      <Text>Settings</Text>
+      <Button title="logout" onPress={() => onLogout()} />
     </View>
   );
 }
@@ -52,22 +60,28 @@ function MyTabs() {
   };
 
   return (
-    <Tab.Navigator screenOptions={creatScreenOptions}>
-      <Tab.Screen
-        name="Resturants"
-        component={RestaurantsNavigator}
-        options={{ title: language.navigations.resturants }}
-      />
-      <Tab.Screen
-        name="Map"
-        component={MapScreen}
-        options={{ title: language.navigations.map }}
-      />
-      <Tab.Screen
-        name="Settings"
-        component={SettingsScreen}
-        options={{ title: language.navigations.settings }}
-      />
-    </Tab.Navigator>
+    <FavouritesContextProvider>
+      <LocationsContextProvider>
+        <RestaurantsContextProvider>
+          <Tab.Navigator screenOptions={creatScreenOptions}>
+            <Tab.Screen
+              name="Resturants"
+              component={RestaurantsNavigator}
+              options={{ title: language.navigations.resturants }}
+            />
+            <Tab.Screen
+              name="Map"
+              component={MapScreen}
+              options={{ title: language.navigations.map }}
+            />
+            <Tab.Screen
+              name="Settings"
+              component={SettingsScreen}
+              options={{ title: language.navigations.settings }}
+            />
+          </Tab.Navigator>
+        </RestaurantsContextProvider>
+      </LocationsContextProvider>
+    </FavouritesContextProvider>
   );
 }

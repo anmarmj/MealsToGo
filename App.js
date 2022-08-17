@@ -1,11 +1,8 @@
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Navigation } from "./src/infrastructure/navigation";
 
-import { RestaurantsContextProvider } from "./src/services/resturants/resturants.context";
-import { LocationsContextProvider } from "./src/services/locations/locations.context";
 import { LanguageContextProvider } from "./src/infrastructure/language/language.context";
-import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 
 import { Loader } from "./src/components/loader/loader.component";
@@ -50,13 +47,7 @@ export default function App() {
     <>
       <LanguageContextProvider>
         <AuthenticationContextProvider>
-          <FavouritesContextProvider>
-            <LocationsContextProvider>
-              <RestaurantsContextProvider>
-                <Navigation />
-              </RestaurantsContextProvider>
-            </LocationsContextProvider>
-          </FavouritesContextProvider>
+          <Navigation />
         </AuthenticationContextProvider>
       </LanguageContextProvider>
       <ExpoStatusBar style="auto" />
