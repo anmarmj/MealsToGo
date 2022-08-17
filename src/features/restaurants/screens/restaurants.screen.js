@@ -1,13 +1,16 @@
 import React, { useContext, useState } from "react";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
-import { FlatList, Pressable, TouchableOpacity } from "react-native";
+import { Pressable, TouchableOpacity } from "react-native";
 import { RestaurantsContext } from "../../../services/resturants/resturants.context";
 import { Loader } from "../../../components/loader/loader.component";
-import { SafeArea, RestaurantListContainer } from "./restaurants.styles";
+import { RestaurantListContainer } from "./restaurants.styles";
+import { SafeArea } from "../../../components/utility/safe-area.component";
 import Search from "../components/search.component";
 import ErrorComp from "../../../components/error/error.component";
 import { FavouritesBar } from "../../../components/favourites/favourites-bar.component";
 import { FavouritesContext } from "../../../services/favourites/favourites.context";
+import { RestaurantList } from "../components/restaurant-list.styles";
+import { FadeInView } from "../../../components/animations/fade.animation";
 
 export const RestaurantsScreen = ({ navigation }) => {
   const { isLoading, error, restaurants } = useContext(RestaurantsContext);
@@ -22,7 +25,9 @@ export const RestaurantsScreen = ({ navigation }) => {
           navigation.navigate("RestaurantDetail", { restaurant: item })
         }
       >
-        <RestaurantInfoCard restaurant={item} />
+        <FadeInView duration={1000}>
+          <RestaurantInfoCard restaurant={item} />
+        </FadeInView>
       </TouchableOpacity>
     </RestaurantListContainer>
   );
@@ -43,7 +48,7 @@ export const RestaurantsScreen = ({ navigation }) => {
       ) : error !== null ? (
         <ErrorComp>{error}</ErrorComp>
       ) : (
-        <FlatList
+        <RestaurantList
           data={restaurants}
           renderItem={renderItem}
           keyExtractor={(item) => item.placeId}

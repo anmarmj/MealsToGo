@@ -1,12 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useContext } from "react";
-import { Text, View, Button } from "react-native";
+
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { SettingsNavigator } from "./settings.navigator";
 
 import { LanguageContext } from "../language/language.context";
 import { ThemeContext } from "styled-components/native";
-import { AuthenticationContext } from "../../services/authentication/authentication.context";
+
 import { RestaurantsContextProvider } from "../../services/resturants/resturants.context";
 import { LocationsContextProvider } from "../../services/locations/locations.context";
 import { FavouritesContextProvider } from "../../services/favourites/favourites.context";
@@ -19,16 +20,6 @@ export default function AppNavigator() {
     <>
       <MyTabs />
     </>
-  );
-}
-
-function SettingsScreen() {
-  const { onLogout } = useContext(AuthenticationContext);
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Settings</Text>
-      <Button title="logout" onPress={() => onLogout()} />
-    </View>
   );
 }
 
@@ -76,7 +67,7 @@ function MyTabs() {
             />
             <Tab.Screen
               name="Settings"
-              component={SettingsScreen}
+              component={SettingsNavigator}
               options={{ title: language.navigations.settings }}
             />
           </Tab.Navigator>
